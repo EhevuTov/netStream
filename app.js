@@ -5,8 +5,9 @@
 
 
 var express = require('express' )
-var zmq     = require( 'zeromq' )
-var socket  = require( 'socket.io' )
+, zmq     = require( 'zeromq' )
+, socket  = require( 'socket.io' )
+, config = require( './config.json' );
 
 var app = module.exports = express.createServer();
 
@@ -55,8 +56,8 @@ app.get('/contact', function(req, res){
   });
 });
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+app.listen(config.server.port);
+console.log("Express server listening on port %d in %s mode", config.server.port, app.settings.env);
 
 // ZeroMQ MSU Subscriber
 console.log( "Subscribing..." )
